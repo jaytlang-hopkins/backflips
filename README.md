@@ -1,4 +1,6 @@
-# Backflip Analyzer
+# Backflips!
+
+https://github.com/user-attachments/assets/4e7641f9-0a66-4f79-8067-3fcfbe814f49
 
 A physics analysis tool for measuring and analyzing backflip biomechanics on force plate sensor data. Calculates impulses, jump heights, and rotational inertia from acceleration and force measurements.
 
