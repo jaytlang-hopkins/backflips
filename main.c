@@ -28,7 +28,7 @@ static void usage(void) {
 int main(int argc, char *argv[]) {
 	const char *csv_file = NULL;
 	int jump_run = -1, flip_run = -1;
-	int ch;
+	int ch = 0;
 
 	while ((ch = getopt(argc, argv, "c:j:f:")) != -1) {
 		switch (ch) {
@@ -58,6 +58,20 @@ int main(int argc, char *argv[]) {
 	if (csv_file == NULL) {
 		usage();
 	}
+
+#ifdef __OPENBSD__
+	if (unveil(csv_file, "r") != 0) {
+		err(1, "unveil %s", csv_file);
+	} else if (unveil(NULL, NULL)) {
+		err(1, "finish unveil");
+	}
+
+	if (pledge("stdio rpath") != 0) {
+		err(1, "pledge");
+	}
+
+#endif // __OPENBSD__
+
 
 	printf("=== Backflip Analyzer ===\n\n");
 
